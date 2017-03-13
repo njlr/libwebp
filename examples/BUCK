@@ -1,0 +1,58 @@
+cxx_library(
+  name = 'anim-util',
+  header_namespace = '',
+  exported_headers = subdir_glob([
+    ('', 'anim_util.h'),
+  ]),
+  srcs = glob([
+    'anim_util.c',
+  ]),
+  deps = [
+    '//:libwebp',
+  ],
+)
+
+cxx_library(
+  name = 'example-util',
+  header_namespace = '',
+  exported_headers = subdir_glob([
+    ('', 'example_util.h'),
+  ]),
+  srcs = glob([
+    'example_util.c',
+  ]),
+)
+
+cxx_binary(
+  name = 'anim-diff',
+  srcs = [
+    'anim_diff.c',
+  ],
+  deps = [
+    '//:libwebp',
+    ':anim-util',
+    ':example-util',
+  ],
+)
+
+cxx_binary(
+  name = 'cwebp',
+  srcs = [
+    'cwebp.c',
+  ],
+  deps = [
+    '//:libwebp',
+    ':example-util',
+  ],
+)
+
+cxx_binary(
+  name = 'dwebp',
+  srcs = [
+    'dwebp.c',
+  ],
+  deps = [
+    '//:libwebp',
+    ':example-util',
+  ],
+)
